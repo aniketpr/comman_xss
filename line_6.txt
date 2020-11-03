@@ -1,0 +1,23 @@
+Line No: 6
+
+let additionalMessage = "";alert("Exploiting Line No. 6 !");"";
+In order to trigger an XSS, an attacker needs to break out of the quotes (or double-quotes).
+Thus, to prevent XSS, quotes (double-quotes) should be HTML encoded:
+        " --> &quot;
+        ' --> &#x27;
+Note that in this case, HTML encoding is more preferable than escaping quotes (double-quotes).
+Escaping quotes means explicitly adding a backslash (\) symbol before every quote. The backslash can be escaped with another backslash, thus leaving the quotes (double-quotes) unescaped.
+Escaping with the backslash uses a blacklist approach and blacklists tend to be bypassed.
+ A different way to break out of the quotes (double-quotes).
+
+
+
+Javascript context inside the quotes (or double-quotes) can be escaped with the </script> tag.
+
+The following payload:
+
+</script><script>alert('We triggered the XSS!');/*
+
+can be used to trigger the XSS.
+
+</script> closes the opening <script> tag and allows breaking out of the previous <script> tag and quotes (double-quotes) into a new <script>. Then the malicious script follows, and after that, the multiline comment is used to eliminate a quote (double-quote) that has left.

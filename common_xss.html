@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<script>
+function submitFunction(message){
+ 
+    let additionalMessage = "[Insert into Javascript between double-quotes]";
+ 
+    let thankyou = `[Insert into template literal], we will be happy to see you on our Javascript course!
+    Have a nice day ${[Insert into template literal]}
+    There are ${daysLeft} days left till the course start`;
+ 
+    var daysLeft = eval(getStartDate() - [Insert into eval]);
+ 
+    document.getElementsById("enroll").innerText = message + "/n" + additionalMessage;
+ 
+}
+ 
+/* Do not forget to add authorization to the admin interface at [Insert into JS comment] */
+</script>
+ 
+<style>
+.item-each .item-text{font-size:14px;font-weight:300;padding:8px; color:[Insert into CSS];}
+.item-each .item-text ul li{font-size:13px}
+.item-each .item-text ul li span{font-weight:300}
+.item-each .item-image{height:60px;width:60px;position:absolute;top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
+</style>
+ 
+</head>
+ 
+<body>
+ 
+<div class=[Insert_tag_attribute_without_quotes]>
+    <a href="/paths/javascript?difficulty=[Insert URL query parameter]">
+        <div class="item-each">
+            <div class="item-image">
+                <img alt="JavaScript" src="[Insert a full URL]" /></div>
+            <div class="item-text">
+                Enroll to our Javascript course
+                <ul>
+                    <li><span>[Insert between HTML tags]</span> Courses</li>
+                    <li><span>21</span> Hours</li>
+                </ul>
+            </div>
+        </div>
+    </a>
+</div>
+ 
+<div id="enroll"></div>
+<form action="/enroll" class="form" onsubmit="submitFunction([Insert into javascript without quotes])">
+    First name: <input type="text" name="fname" value="[Insert into double-quoted attribute]"><br>
+    Last name: <input type="text" name="lname"><br>
+  <input type="submit" value="Submit">
+</form>
+ 
+ 
+<noscript>
+    Please turn on Javascript! [Insert into noscript tag] element cannot be displayed without Javascript!
+</noscript>
+ 
+<iframe src="[Insert iframe src attribute]" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+

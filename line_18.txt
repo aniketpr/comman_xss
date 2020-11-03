@@ -1,0 +1,14 @@
+This context enables the user to insert a malicious payload into the <iframe> "src" attribute:
+
+/* Do not forget to add authorization to the admin interface at [Insert into JS comment] */
+
+In our example, we'll use the following payload to trigger the XSS:
+
+*/ alert('XSS is successfully triggered!');/*
+
+To trigger the XSS, an attacker needs to break out of comments. To break out of an HTML comment or a 
+javascript multiline comment, a malicious script should be prepended with comment closing symbols (--> or */) and 
+appended with comment opening symbols (<!-- or */). To break out of a single line javascript comments, next line 
+symbols should be inserted.
+
+To prevent XSS, avoid insertion of user-supplied input into HTML or Javascript comments.

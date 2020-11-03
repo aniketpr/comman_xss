@@ -1,0 +1,17 @@
+This context enables the user to insert a malicious payload into the tag attribute with quotes:
+First name: <input type="text" name="fname" value="[Insert into double-quoted attribute]"><br>
+
+In our example, we'll use the following payload to trigger the XSS:
+onmouseover=alert('XSS is successfully triggered!') alt="1
+
+To trigger the XSS in this context, an attacker needs to break out of the quotes (double quotes). 
+To do that, an additional quote (double quote) should be inserted with the payload.
+
+Usually, HTML-encoding libraries encode double quotes, but they may not encode single quotes by default. 
+Make sure that you encode all types of quotes when you insert the data into them.
+
+Note that in this case, HTML encoding is more preferable than escaping quotes (double quotes). 
+By "escaping" we mean "explicitly adding backslash (\) symbol before every quote or double-quote".
+
+A backslash can be escaped with another backslash, thus leaving a quote (double quote) unescaped. 
+Escaping with the backslashes uses a blacklist approach, and blacklists tend to be bypassed.

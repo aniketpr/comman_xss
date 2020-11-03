@@ -1,0 +1,17 @@
+Line No: 32
+
+This context enables the user to insert a malicious payload inside the tag attribute without quotes:
+
+<div class=[Insert tag attribute without quotes]>
+
+In our example, we'll use the following payload to trigger the XSS:
+
+1 onmouseover=alert('We triggered the XSS!')
+
+In order to trigger the XSS, an attacker needs to add an event handler to the tag, for example, "onmouseover". If an attribute value is unquoted, then the attacker just needs to insert a space and then an arbitrary event handler, for example:
+
+<div title=1 onmouseover=alert('We triggered the XSS!')></div>
+
+In this case, the attacker doesn't use any symbols that are usually HTML-encoded. So, in order to prevent XSS, only alphanumeric characters should be allowed.
+
+But the whitelist approach is not effective in this case, especially if nonalphanumeric characters usage s required. The secure approach is to put tag attribute values into single or double quotes and prevent the attacker from breaking out of these quotes.

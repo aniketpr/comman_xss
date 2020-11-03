@@ -1,0 +1,15 @@
+<img alt="JavaScript" src="[Insert a full URL]" /></div>
+
+In our example, we can use one of the following payloads to trigger the XSS:
+
+" onmouseover="alert('We triggered the XSS!')" alt="
+
+javascript:alert('We triggered the XSS!')
+
+To trigger the XSS, an attacker either can break out of the tag attribute context or insert unexpected protocol that leads to the javascript execution (for example, javascript:).
+
+To mitigate the vulnerability, first, the validity of the URL should be checked, e.g. it should use HTTP or HTTPS protocol and point to the location suggested by the application logic.
+
+In case the first check is successful, the URL should be encoded according to the context where it is inserted.
+
+Modern browsers check for javascript in src or href attributes and don't allow its usage, but anyway, to avoid the XSS, the URL must be validated and encoded.

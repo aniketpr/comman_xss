@@ -1,0 +1,19 @@
+This context enables the user to insert a malicious payload into the <iframe> "src" attribute:
+
+<iframe src="[Insert iframe src attribute]" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+
+In our example, we can use one of the following payloads to trigger the XSS:
+
+javascript:alert('XSS is successfully triggered!')
+or
+" onload="alert('XSS is successfully triggered!')" alt="
+
+But we'll choose the first one to test the vulnerability.
+
+To trigger the XSS by injecting user-supplied malicious input into the source attribute in HTML tags that 
+add nested browsing contexts (e.g. <iframe> or <object>), an attacker needs to insert a javascript instead of 
+an URL into this attribute. Browsers do not automatically sanitize "src" attribute, thus leaving a possibility 
+for the URL starting with "javascript:" to be inserted.
+
+To prevent XSS in this context, validate the inserted URLs (i.e. each URL should be valid and use HTTP or HTTPS 
+schema). After validation, encode double quotes to prevent the attacker from breaking out of the "src" attribute.

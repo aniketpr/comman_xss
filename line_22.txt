@@ -1,0 +1,21 @@
+This context enables the user to insert a malicious payload inside the <style> tag:
+
+.item-each .item-text{font-size:14px;font-weight:300;padding:8px; color:[Insert into CSS];}
+
+In our example, we'll use the following payload to trigger the XSS:
+
+"blue";}</style><script>alert('We triggered the XSS!')</script><style>
+
+In order to trigger the XSS, an attacker needs to break out of a <style> tag.
+
+To prevent breaking out of the <style>, HTML encoding should be used.
+
+In older browsers, it was possible to trigger the XSS by inserting Javascript into properties containing URLs:
+
+<style>.xss{background-image:url("javascript:alert('XSS')");}</style>
+
+Or into CSS expressions:
+
+<img style="xss:expression(alert('XSS'))">
+
+Currently, URLs in CSS properties are sanitized by browsers, and CSS expressions are deprecated.

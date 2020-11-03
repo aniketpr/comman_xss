@@ -1,0 +1,24 @@
+<li><span>[Insert between HTML tags]</span> Courses</li>
+
+This context enables the user to insert a malicious payload between HTML tags:
+
+In our example, we'll use the following payload to trigger the XSS:
+<script>alert('XSS is successfully triggered!')</script>
+
+To trigger the XSS by inserting arbitrary data into HTML tags, an attacker needs to get into a context where the inserted malicious script 
+gets executed.
+
+These contexts are javascript, style tag, or event handlers. HTML encoding (i.e. encoding all HTML reserved symbols into their benign 
+representations) prevents an attacker from getting inside angle brackets <> or injecting arbitrary tags.
+
+Each framework has its own function for HTML encoding. By default these functions may not encode some symbols leaving a possibility for the XSS,
+thus they should be verified for sufficiency before being used.
+
+With HTML encoding, the following substitutes are used for potentially malicious symbols:
+
+& --> &amp;
+< --> &lt;
+> --> &gt;
+" --> &quot;
+' --> &#x27;
+/ --> &#x2F;

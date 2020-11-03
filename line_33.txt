@@ -1,0 +1,11 @@
+This context enables the user to insert a malicious payload inside the query parameter of the URL:
+
+<a href="/paths/javascript?difficulty=[Insert URL query parameter]">
+
+In our example, we'll use the following payload to trigger the XSS:
+
+" onmouseover="alert('We triggered the XSS!')" alt="
+
+In order to prevent it, the inserted value should be URL-encoded (all characters except for alphanumeric and benign ones like . (dot), _ (underscore), @(at sign), - (dash)).
+
+URL encoding will also encode quotes and double quotes, thus preventing an attacker from breaking out of href

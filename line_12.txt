@@ -1,0 +1,12 @@
+Line No: 12
+This context enables the user to insert a malicious payload inside the Javascript sink (eval() in our example):
+var daysLeft = eval(getStartDate() - [Insert into eval]);
+In our example, we'll use the following payload to trigger the XSS:
+alert('We triggered the XSS!')
+
+Do not insert the untrusted data with functions that evaluate javascript like eval(), setTimeout(), setInterval() or Function() constructor. Any data inserted into these functions will be evaluated as javascript.
+
+Also, do not use eval() for parsing JSON, e.g. eval({key:"[Insert here]"}). In this case, eval() can trigger the XSS if some malicious script is inserted. To avoid XSS, use JSON.parse to parse JSON.
+
+
+

@@ -1,0 +1,16 @@
+This context enables the user to insert a malicious payload into the Javascript code without any type of quotes:
+
+<form action="/enroll" class="form" onsubmit="submitFunction([Insert into javascript without quotes])">
+
+In our example, we'll use the following payload to trigger the XSS:
+
+123);alert('XSS is successfully triggered!'
+
+
+Inserting user-supplied input into the javascript code without quotes, double quotes, or backticks is likely to end up having the XSS.
+
+Encoding HTML and quotes won't help in this case because a viable XSS payload can be written without quotes and angle brackets. 
+To prevent the XSS in this case, all non-alphanumeric symbols should be encoded.
+
+A more preferable mitigation strategy is to insert user-supplied input only into quotes, double quotes, or backticks and make sure an 
+attacker doesn't break out of them.

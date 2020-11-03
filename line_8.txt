@@ -1,0 +1,37 @@
+Line No: 8 & 9
+This context enables the user to insert a malicious payload inside the Javascript template literal (we have two contexts for the template literal here):
+
+let thankyou = `[Insert into template literal], we will be happy to see you on our Javascript course!
+
+Have a nice day ${[Insert into template literal]}
+
+In our example, we'll use the following payloads to trigger the XSS:
+
+${alert('We triggered the XSS!')} - for the first literal
+
+alert('We triggered the XSS!') - for the second literal
+
+There are two options for an attacker to trigger the XSS when template literals are used:
+
+1. If the user-controlled data is inserted between the backticks (`) and not inside ${}, an attacker should either break out of the the backticks and insert a malicious script into the Javascript context or insert a malicious script enclosed in curly brackets and prepended with a dollar sign (${malicious script}) between the backticks. In both cases, the malicious script is going to be executed.
+
+2. If the user-controlled data is inserted right into ${}, an attacker can insert the Javascript code right away. To prevent XSS, avoid insertion of the data between the backticks or inside ${} without enclosing the data in quotes or double quotes.
+
+If you insert the data dynamically on the backend, there are two preferable ways of doing it:
+
+1. Insert sanitized data into a variable between the quotes or double quotes and then insert the variable into the template literal.
+
+var variable = "[Insert here]"; literal = `The number is ${variable}`
+
+2. Insert sanitized data into the quotes or double quotes inside the template literal.
+
+literal = `Some text "[Insert here]" ${<"[or insert here]">}`
+
+If the data is inserted from a JSON on the frontend, then according to the JSON syntax any string is enclosed into double quotes. If JSON is parsed securely, e.g. using JSON.parse(), then you can insert values from the JSON to the template literal without additional security controls.
+
+In the following example:
+
+inputjson = JSON.parse("{\"key1\":\"value1\",\"key2\":2,\"key3\":true}");
+console.log(`Key1 = ${inputjson.key1}, Key2 = ${inputjson.key2}, Key3 = ${inputjson.key3}`)
+
+the value of the key1 parameter will be interpreted as a string no matter what it contains. Values of key2 and key3 parameters are not enclosed in double quotes, thus insertion of these values as expression into ${ } placeholder can lead to the malicious script execution. JSON.parse() or another secure JSON parser prevents XSS by checking the data type of values and throwing an error if a string value is not enclosed with double quotes.

@@ -1,0 +1,15 @@
+This context enables the user to insert a malicious payload into the <noscript></noscript> tag:
+
+<noscript> 
+    Please turn on Javascript! [Insert into noscript tag] element cannot be displayed without Javascript! 
+</noscript>
+
+
+In our example, we'll use the following payload to trigger the XSS:
+
+</noscript><script>alert('XSS is successfully triggered!')</script>
+
+The <noscript> tag is often misinterpreted as protection against XSS. This tag is used to display data when 
+Javascript is disabled or not supported. It doesn't protect against XSS attacks: when untrusted data is inserted 
+between <noscript> tags, in terms of XSS this is equivalent to inserting data into regular HTML tags 
+like <div> or <span>. Thus HTML encoding should be used in to prevent XSS in this context.
